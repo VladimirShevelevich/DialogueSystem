@@ -9,6 +9,13 @@ namespace UI
 {
     public class PuzzleChooseScreenEntity : IDisposable
     {   
+        public enum PuzzleID
+        {
+            Dog,
+            Cat,
+            Fish
+        }
+        
         private PuzzleChooseScreenView _view;
 
         public PuzzleChooseScreenEntity(
@@ -16,17 +23,15 @@ namespace UI
             Canvas uiCanvas,
             ReactiveCommand onHidden)
         {
-            var viewReactive = new PuzzleChooseScreenViewReactive();
-            viewReactive.OnHidden.Subscribe(_ => onHidden.Execute());
-            
-            new PuzzleChooseScreenViewModel(viewReactive);
-            CreateView(contentProvider, viewReactive, uiCanvas);
+            var viewModel = new PuzzleChooseScreenViewModel();
+            viewModel.OnHidden.Subscribe(_=> onHidden.Execute());
+            CreateView(contentProvider, viewModel, uiCanvas);
         }
 
-        private void CreateView(ContentProvider contentProvider, PuzzleChooseScreenViewReactive viewReactive, Canvas canvas)
+        private void CreateView(ContentProvider contentProvider, PuzzleChooseScreenViewModel viewModel, Canvas canvas)
         {
             _view = Object.Instantiate(contentProvider.PuzzleChooseScreenView, canvas.transform);
-            _view.Init(viewReactive);
+            _view.Init(viewModel);
         }
 
         public void Dispose()

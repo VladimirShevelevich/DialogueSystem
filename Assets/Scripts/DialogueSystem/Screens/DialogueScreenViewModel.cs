@@ -1,6 +1,6 @@
 ﻿using UniRx;
 
-public class ScreenViewReactive
+public abstract class DialogueScreenViewModel
 {
     public readonly ReactiveCommand Hide = new();
     public readonly ReactiveCommand OnHidden = new();

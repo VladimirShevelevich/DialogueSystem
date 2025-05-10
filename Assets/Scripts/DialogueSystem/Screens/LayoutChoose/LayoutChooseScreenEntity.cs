@@ -17,17 +17,15 @@ namespace UI
             Canvas uiCanvas,
             ReactiveCommand onHidden)
         {
-            var viewReactive = new LayoutChooseScreenViewReactive();
-            viewReactive.OnHidden.Subscribe(_ => onHidden.Execute());
-
-            var viewModel = new LayoutChooseScreenViewModel(viewReactive);
-            CreateView(contentProvider, viewReactive, uiCanvas);
+            var viewModel = new LayoutChooseScreenViewModel();
+            viewModel.OnHidden.Subscribe(_=> onHidden.Execute());
+            CreateView(contentProvider, viewModel, uiCanvas);
         }
 
-        private void CreateView(ContentProvider contentProvider, LayoutChooseScreenViewReactive viewReactive, Canvas canvas)
+        private void CreateView(ContentProvider contentProvider, LayoutChooseScreenViewModel viewModel, Canvas canvas)
         {
             _view = Object.Instantiate(contentProvider.layoutChooseScreenView, canvas.transform);
-            _view.Init(viewReactive);
+            _view.Init(viewModel);
         }
 
         public void Dispose()

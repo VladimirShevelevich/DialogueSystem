@@ -2,19 +2,20 @@
 
 namespace UI.Screens.PuzzleChoose
 {
-    public class PuzzleChooseScreenViewModel
+    public class PuzzleChooseScreenViewModel : DialogueScreenViewModel
     {
-        private readonly PuzzleChooseScreenViewReactive _viewReactive;
+        public readonly ReactiveProperty<PuzzleChooseScreenEntity.PuzzleID> ChosenPuzzleID = new(PuzzleChooseScreenEntity.PuzzleID.Dog);
+        public readonly ReactiveCommand<PuzzleChooseScreenEntity.PuzzleID> OnPuzzleClicked = new();
+        public readonly ReactiveCommand OnNextScreenClicked = new();
 
-        public PuzzleChooseScreenViewModel(PuzzleChooseScreenViewReactive viewReactive)
+        public PuzzleChooseScreenViewModel()
         {
-            _viewReactive = viewReactive;
-            _viewReactive.OnNextScreenClicked.Subscribe(_ => HandleOnNextScreenClicked());
+            OnNextScreenClicked.Subscribe(_ => HandleOnNextScreenClicked());
         }
 
         private void HandleOnNextScreenClicked()
         {
-            _viewReactive.Hide.Execute();
+            Hide.Execute();
         }
     }
 }

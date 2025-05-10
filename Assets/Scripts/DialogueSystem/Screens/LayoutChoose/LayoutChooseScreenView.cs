@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using DialogueSystem.Screens.LayoutChoose;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,22 +8,21 @@ namespace UI.Screens.LayoutChoose
     public class LayoutChooseScreenView : DialogueScreenBaseView
     {
         [SerializeField] private Button _nextButton;
-    
-        private LayoutChooseScreenViewReactive _viewReactive;
+        private LayoutChooseScreenViewModel _viewModel;
 
-        public void Init(LayoutChooseScreenViewReactive viewReactive)
+        public void Init(LayoutChooseScreenViewModel viewModel)
         {
-            _viewReactive = viewReactive;
-            _viewReactive.Hide.Subscribe(_=> Hide());
+            _viewModel = viewModel;
+            _viewModel.Hide.Subscribe(_=> Hide());
             _nextButton.OnClickAsObservable().Subscribe(_=> 
-                _viewReactive.OnNextScreenClicked.Execute());
+                viewModel.OnNextScreenClicked.Execute());
         
             Show();
         }
 
         protected override void OnHidden()
         {
-            _viewReactive.OnHidden.Execute();
+            _viewModel.OnHidden.Execute();
         }
     }
 }

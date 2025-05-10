@@ -1,5 +1,6 @@
 ﻿using UI;
 using UI.Screens;
+using UI.Screens.PuzzleChoose;
 using UniRx;
 using UnityEngine;
 using Button = UnityEngine.UI.Button;
@@ -8,20 +9,20 @@ public class PuzzleChooseScreenView : DialogueScreenBaseView
 {
     [SerializeField] private Button _nextButton;
     
-    private PuzzleChooseScreenViewReactive _viewReactive;
+    private PuzzleChooseScreenViewModel _viewModel;
 
-    public void Init(PuzzleChooseScreenViewReactive viewReactive)
+    public void Init(PuzzleChooseScreenViewModel viewModel)
     {
-        _viewReactive = viewReactive;
-        _viewReactive.Hide.Subscribe(_=> Hide());
+        _viewModel = viewModel;
+        _viewModel.Hide.Subscribe(_=> Hide());
         _nextButton.OnClickAsObservable().Subscribe(_=> 
-            _viewReactive.OnNextScreenClicked.Execute());
+            viewModel.OnNextScreenClicked.Execute());
         
         Show();
     }
 
     protected override void OnHidden()
     {
-        _viewReactive.OnHidden.Execute();
+        _viewModel.OnHidden.Execute();
     }
 }
