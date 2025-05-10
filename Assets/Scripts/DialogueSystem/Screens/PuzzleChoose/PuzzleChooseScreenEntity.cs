@@ -9,22 +9,16 @@ namespace UI
 {
     public class PuzzleChooseScreenEntity : IDisposable
     {   
-        public enum PuzzleID
-        {
-            None,
-            Dog,
-            Cat,
-            Fish
-        }
         
         private PuzzleChooseScreenView _view;
 
         public PuzzleChooseScreenEntity(
             ContentProvider contentProvider,
             Canvas uiCanvas,
-            ReactiveCommand onHidden)
+            ReactiveCommand onHidden,
+            LevelSetupModel levelSetupModel)
         {
-            var viewModel = new PuzzleChooseScreenViewModel();
+            var viewModel = new PuzzleChooseScreenViewModel(levelSetupModel);
             viewModel.OnHidden.Subscribe(_=> onHidden.Execute());
             CreateView(contentProvider, viewModel, uiCanvas);
         }

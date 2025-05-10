@@ -18,6 +18,7 @@ public class PuzzleChooseScreenView : DialogueScreenBaseView
         _viewModel = viewModel;
         _viewModel.Hide.Subscribe(_=> Hide());
         _viewModel.ChosenPuzzleID.Subscribe(HandlePuzzleChosen);
+        _viewModel.NextButtonAvailable.Subscribe(HandleNextButtonAvailable);
         _nextButton.OnClickAsObservable().Subscribe(_=> 
             viewModel.OnNextScreenClicked.Execute());
         
@@ -33,12 +34,17 @@ public class PuzzleChooseScreenView : DialogueScreenBaseView
         }
     }
 
-    private void HandlePuzzleChosen(PuzzleChooseScreenEntity.PuzzleID chosenPuzzle)
+    private void HandlePuzzleChosen(PuzzleID chosenPuzzle)
     {
         foreach (var puzzleView in _puzzleViews)
         {
             puzzleView.Highlight(chosenPuzzle == puzzleView.PuzzleID);
         }
+    }
+
+    private void HandleNextButtonAvailable(bool available)
+    {
+        _nextButton.gameObject.SetActive(available);
     }
 
     protected override void OnHidden()

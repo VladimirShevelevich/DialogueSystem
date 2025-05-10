@@ -15,9 +15,10 @@ namespace UI
         public LayoutChooseScreenEntity(
             ContentProvider contentProvider,
             Canvas uiCanvas,
-            ReactiveCommand onHidden)
+            ReactiveCommand onHidden,
+            LevelSetupModel levelSetupModel)
         {
-            var viewModel = new LayoutChooseScreenViewModel();
+            var viewModel = new LayoutChooseScreenViewModel(levelSetupModel);
             viewModel.OnHidden.Subscribe(_=> onHidden.Execute());
             CreateView(contentProvider, viewModel, uiCanvas);
         }

@@ -1,13 +1,12 @@
 ﻿using System;
-using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DialogueSystem.Screens.PuzzleChoose
+namespace UI.Screens.LayoutChoose
 {
-    public class PuzzleView : MonoBehaviour
+    public class LayoutView : MonoBehaviour
     {
-        public PuzzleID PuzzleID;
+        public int Layout;
         public event Action OnClick = delegate { };
         
         [SerializeField] private Image HighlightBorder;

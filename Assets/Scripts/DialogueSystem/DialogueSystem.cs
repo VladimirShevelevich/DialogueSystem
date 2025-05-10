@@ -21,11 +21,13 @@ namespace UI
         private readonly Canvas _uiCanvas;
 
         private readonly ReactiveCommand _onScreenHidden = new();
+        private readonly LevelSetupModel _levelSetupModel;
 
-        public DialogueSystem(ContentProvider contentProvider, Canvas uiCanvas)
+        public DialogueSystem(ContentProvider contentProvider, Canvas uiCanvas, LevelSetupModel levelSetupModel)
         {
             _contentProvider = contentProvider;
             _uiCanvas = uiCanvas;
+            _levelSetupModel = levelSetupModel;
             Init();
         }
         
@@ -56,10 +58,10 @@ namespace UI
             {
                 case ScreenType.ChoosePuzzleScreen:
                     return new PuzzleChooseScreenEntity(
-                        _contentProvider, _uiCanvas, _onScreenHidden);
+                        _contentProvider, _uiCanvas, _onScreenHidden, _levelSetupModel);
                 case ScreenType.ChooseLayoutScreen:
                     return new LayoutChooseScreenEntity(
-                        _contentProvider, _uiCanvas, _onScreenHidden);
+                        _contentProvider, _uiCanvas, _onScreenHidden, _levelSetupModel);
                 default:
                     throw new ArgumentOutOfRangeException(nameof(screenType), screenType, null);
             }
@@ -71,9 +73,17 @@ namespace UI
             
             _currentScreenIndex++;
             if (_currentScreenIndex >= _screensSequence.Count)
+            {
+                OnSetupCompleted();
                 return;
+            }
             
             CreateScreen(_currentScreenIndex);
+        }
+
+        private void OnSetupCompleted()
+        {
+            Debug.Log($"Setup completed. {_levelSetupModel}");
         }
     }
 }
