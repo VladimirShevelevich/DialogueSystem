@@ -6,7 +6,7 @@ using UniRx;
 using UnityEngine;
 using Button = UnityEngine.UI.Button;
 
-public class PuzzleChooseScreenView : DialogueScreenBaseView
+public class PuzzleChooseScreenView : DialogueScreenView
 {
     [SerializeField] private Button _nextButton;
     [SerializeField] private PuzzleView[] _puzzleViews;

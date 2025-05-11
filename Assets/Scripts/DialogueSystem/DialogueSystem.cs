@@ -14,20 +14,22 @@ namespace UI
             ChooseLayoutScreen
         }
 
+        private readonly ContentProvider _contentProvider;
+        private readonly Canvas _uiCanvas;
+        private readonly LevelSetupModel _levelSetupModel;
+        
         private List<ScreenType> _screensSequence;
         private int _currentScreenIndex;
         private IDisposable _currentScreen;
-        private readonly ContentProvider _contentProvider;
-        private readonly Canvas _uiCanvas;
 
         private readonly ReactiveCommand _onScreenHidden = new();
-        private readonly LevelSetupModel _levelSetupModel;
 
         public DialogueSystem(ContentProvider contentProvider, Canvas uiCanvas, LevelSetupModel levelSetupModel)
         {
             _contentProvider = contentProvider;
             _uiCanvas = uiCanvas;
             _levelSetupModel = levelSetupModel;
+            
             Init();
         }
         

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace UI.Screens
 {
-    public abstract class DialogueScreenBaseView : MonoBehaviour
+    public abstract class DialogueScreenView : MonoBehaviour
     {
         protected void Show()
         {
@@ -14,10 +14,7 @@ namespace UI.Screens
 
         protected void Hide()
         {
-            transform.DOScale(0, 0.3f).OnComplete(() =>
-            {
-                OnHidden();
-            });
+            transform.DOScale(0, 0.3f).OnComplete(OnHidden);
         }
 
         protected abstract void OnHidden();

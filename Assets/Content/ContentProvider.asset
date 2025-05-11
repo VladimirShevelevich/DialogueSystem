@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ContentProvider
   m_EditorClassIdentifier: 
   PuzzleChooseScreenView: {fileID: 4172854658044280053, guid: f5cfd029d40c0374cb04afcaeebe210c, type: 3}
-  layoutChooseScreenView: {fileID: 6086010764226396457, guid: 593a7488b42c6414e81558f79115a514, type: 3}
+  layoutChooseScreenView: {fileID: 9167027218568255227, guid: b925652c8018dd442b76508d36dd8675, type: 3}

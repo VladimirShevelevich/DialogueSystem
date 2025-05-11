@@ -9,7 +9,6 @@ namespace UI
 {
     public class PuzzleChooseScreenEntity : IDisposable
     {   
-        
         private PuzzleChooseScreenView _view;
 
         public PuzzleChooseScreenEntity(

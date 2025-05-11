@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace UI.Screens.LayoutChoose
 {
-    public class LayoutChooseScreenView : DialogueScreenBaseView
+    public class LayoutChooseScreenView : DialogueScreenView
     {
         [SerializeField] private Button _nextButton;
         private LayoutChooseScreenViewModel _viewModel;

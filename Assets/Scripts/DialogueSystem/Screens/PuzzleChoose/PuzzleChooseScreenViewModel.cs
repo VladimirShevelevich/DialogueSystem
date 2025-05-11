@@ -9,11 +9,10 @@ namespace UI.Screens.PuzzleChoose
         
         private readonly LevelSetupModel _levelSetupModel;
 
-        public PuzzleChooseScreenViewModel( LevelSetupModel levelSetupModel)
+        public PuzzleChooseScreenViewModel(LevelSetupModel levelSetupModel)
         {
             _levelSetupModel = levelSetupModel;
             OnNextScreenClicked.Subscribe(_=> HandleOnNextScreenClicked());
-            
             OnPuzzleClicked.Subscribe(HandlePuzzleClicked);
         }
 
